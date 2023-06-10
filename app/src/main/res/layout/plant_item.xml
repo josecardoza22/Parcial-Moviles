@@ -5,6 +5,7 @@
     android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/plantCard"
         android:layout_width="150sp"
         android:layout_height="80sp"
         app:cardCornerRadius="25sp"

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/feedFragment"
-        android:name="com.enrique.parcialmoviles.FeedFragment"
+        android:name="com.enrique.parcialmoviles.ui.plant.feed.FeedFragment"
         android:label="fragment_feed"
         tools:layout="@layout/fragment_feed" >
         <action
@@ -19,12 +19,12 @@
     </fragment>
     <fragment
         android:id="@+id/newPlantFragment"
-        android:name="com.enrique.parcialmoviles.NewPlantFragment"
+        android:name="com.enrique.parcialmoviles.ui.plant.newplant.NewPlantFragment"
         android:label="fragment_new_plant"
         tools:layout="@layout/fragment_new_plant" />
     <fragment
         android:id="@+id/viewPlantFragment"
-        android:name="com.enrique.parcialmoviles.ViewPlantFragment"
+        android:name="com.enrique.parcialmoviles.ui.plant.ViewPlantFragment"
         android:label="fragment_view_plant"
         tools:layout="@layout/fragment_view_plant" />
 </navigation>
