@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Plant Tracker</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="especie">Especie: </string>
+    <string name="flor">Flor</string>
+    <string name="color">Color: </string>
+    <string name="color_de_flor">Color de Flor</string>
+    <string name="plant_tracker">Plant Tracker</string>
+    <string name="tocreateplant">toCreatePlant</string>
+    <string name="especieView">Especie</string>
+    <string name="colorView">Color</string>
+</resources>
