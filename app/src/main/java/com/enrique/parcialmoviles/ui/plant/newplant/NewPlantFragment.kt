@@ -1,57 +1,64 @@
 package com.enrique.parcialmoviles.ui.plant.newplant
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.enrique.parcialmoviles.ARG_PARAM1
-import com.enrique.parcialmoviles.ARG_PARAM2
-import com.enrique.parcialmoviles.R
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
+import com.enrique.parcialmoviles.data.models.PlantModel
+import com.enrique.parcialmoviles.databinding.FragmentNewPlantBinding
+import com.enrique.parcialmoviles.databinding.PlantItemBinding
+import com.enrique.parcialmoviles.ui.plant.viewmodel.PlantViewModel
 
-/**
- * A simple [Fragment] subclass.
- * Use the [NewPlantFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class NewPlantFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+class NewProductFragment : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    private lateinit var binding: FragmentNewPlantBinding
+
+    private val viewModel: PlantViewModel by activityViewModels {
+        PlantViewModel.Factory
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_new_plant, container, false)
+        binding = FragmentNewPlantBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment NewPlantFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            NewPlantFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        setViewModel()
+        setObserver()
+    }
+
+    private fun setViewModel(){
+        binding.viewmodel = viewModel
+    }
+
+    private fun setObserver() {
+        viewModel.status.observe(viewLifecycleOwner){status ->
+            when {
+                status.equals(PlantViewModel.PRODUCT_CREATE) -> {
+                    Log.d("TAG APP", status)
+                    Log.d("TAG APP", viewModel.getPlants().toString())
+
+                    viewModel.clearStatus()
+                    viewModel.clearData()
+
+                    findNavController().popBackStack()
+                }
+                status.equals(PlantViewModel.WRONG_DATA) -> {
+                    Log.d("APP TAP", status)
+                    viewModel.clearStatus()
                 }
             }
+        }
     }
+
 }

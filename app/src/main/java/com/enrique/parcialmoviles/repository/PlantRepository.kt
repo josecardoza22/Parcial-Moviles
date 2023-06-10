@@ -3,7 +3,7 @@ package com.enrique.parcialmoviles.repository
 import com.enrique.parcialmoviles.data.models.PlantModel
 
 class PlantRepository(private val plants: MutableList<PlantModel>) {
-    fun getProducts() = plants
+    fun getPlants() = plants
 
-    fun addProducts(newPlant: PlantModel) = plants.add(newPlant)
+    fun addPlant(newPlant: PlantModel) = plants.add(newPlant)
 }

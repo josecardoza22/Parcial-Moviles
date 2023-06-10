@@ -5,9 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.enrique.parcialmoviles.R
+import com.enrique.parcialmoviles.data.models.PlantModel
 import com.enrique.parcialmoviles.databinding.FragmentFeedBinding
 import com.enrique.parcialmoviles.ui.plant.feed.RecycleView.RecycleViewAdapter
+import com.enrique.parcialmoviles.ui.plant.viewmodel.PlantViewModel
 
 class FeedFragment : Fragment() {
 
@@ -18,21 +23,21 @@ class FeedFragment : Fragment() {
         PlantViewModel.Factory
     }
 
-    private fun showSelectedProduct(product: ProductModel) {
-        viewModel.setSelectedProduct(product)
-        findNavController().navigate(R.id.action_feedFragment_to_viewProductFragment)
+    private fun showSelectedPlant(plant: PlantModel) {
+        viewModel.setSelectedPlant(plant)
+        findNavController().navigate(R.id.action_feedFragment_to_viewPlantFragment)
     }
 
     private fun displayProducts(){
-        adapter.setData(viewModel.getProducts())
+        adapter.setData(viewModel.getPlants())
         adapter.notifyDataSetChanged()
     }
 
     private fun setRecycleView(view: View){
         binding.productRecycleview.layoutManager = LinearLayoutManager(view.context)
 
-        adapter = ProductRecycleViewAdapter { selectedProduct ->
-            showSelectedProduct(selectedProduct)
+        adapter = RecycleViewAdapter { selectedPlant ->
+            showSelectedPlant(selectedPlant)
         }
 
         binding.productRecycleview.adapter = adapter
@@ -52,9 +57,9 @@ class FeedFragment : Fragment() {
 
         setRecycleView(view)
 
-        binding.actionToCreateProduct.setOnClickListener{
+        binding.actionToCreatePlant.setOnClickListener{
             viewModel.clearData()
-            findNavController().navigate(R.id.action_feedFragment_to_newProductFragment)
+            findNavController().navigate(R.id.actionToCreatePlant)
         }
     }
 }

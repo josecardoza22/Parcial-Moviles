@@ -6,7 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.enrique.parcialmoviles.data.models.PlantModel
 import com.enrique.parcialmoviles.databinding.PlantItemBinding
 
-class RecycleViewAdapter (
+
+class ProductRecycleViewAdapter (
     private val clickListener: (PlantModel) -> Unit) : RecyclerView.Adapter<RecycleViewHolder>() {
     private val plants = ArrayList<PlantModel>()
 
