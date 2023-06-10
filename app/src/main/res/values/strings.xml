@@ -9,4 +9,5 @@
     <string name="tocreateplant">toCreatePlant</string>
     <string name="especieView">Especie</string>
     <string name="colorView">Color</string>
+    <string name="agregar">AGREGAR</string>
 </resources>
